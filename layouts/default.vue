@@ -10,7 +10,7 @@ const toggleDark = useToggle(isDark);
     <nav
       class="bg-bgLight/60 dark:bg-bgDark/60 sticky top-0 z-10 flex items-center justify-between px-3 py-2 backdrop-blur"
     >
-      <div class="flex items-center gap-2">
+      <div class="transition-animation flex items-center gap-2 hover:scale-105">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -26,8 +26,10 @@ const toggleDark = useToggle(isDark);
           <line x1="8" y1="2" x2="8" y2="18"></line>
           <line x1="16" y1="6" x2="16" y2="22"></line>
         </svg>
+
         <a
-          class="font-poppins text-textLight dark:text-textDark text-2xl font-bold text-transparent"
+          href="#home"
+          class="font-poppins text-textLight dark:text-textDark select-none text-2xl font-bold"
         >
           LocateIP
         </a>
@@ -43,7 +45,7 @@ const toggleDark = useToggle(isDark);
             stroke-width="2.5"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="h-6 w-6 stroke-blue-500 md:h-7 md:w-7 lg:h-8 lg:w-8"
+            class="h-7 w-7 stroke-blue-500 md:h-8 md:w-8 lg:h-9 lg:w-9"
           >
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
@@ -56,7 +58,7 @@ const toggleDark = useToggle(isDark);
             stroke-width="2.5"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="h-6 w-6 stroke-yellow-400 md:h-7 md:w-7 lg:h-8 lg:w-8"
+            class="h-7 w-7 stroke-yellow-400 md:h-8 md:w-8 lg:h-9 lg:w-9"
           >
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -77,6 +79,10 @@ const toggleDark = useToggle(isDark);
 </template>
 
 <style scoped>
+.transition-animation {
+  transition: all 0.3s ease-in;
+}
+
 .slide-up-enter-active,
 .slide-up-leave-active {
   transition: all 0.2s ease-out;
