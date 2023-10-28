@@ -20,13 +20,16 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: ["@vueuse/nuxt",],
+  modules: ["@vueuse/nuxt", "nuxt-svgo"],
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+  svgo:{
+    componentPrefix: 'Icon',
   },
   ssr: false,
 });

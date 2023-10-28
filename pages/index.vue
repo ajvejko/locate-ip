@@ -8,5 +8,10 @@
         >Locate the IP!</span
       >
     </div>
+    <div class="flex justify-center">
+      <span class="font-poppins text-lg font-semibold">
+        Enter an IP address to locate it!
+      </span>
+    </div>
   </section>
 </template>
