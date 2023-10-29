@@ -19,14 +19,14 @@ export default {
         // Light theme
         textLight: "#1d2b35",
         bgLight: "#eff0f1",
-        primaryLight: "#9bd1f8",
+        primaryLight: "#073d64",
         secondaryLight: "#fff5d6",
         accentLight: "#cb1524",
 
         // Dark theme
         textDark: "#cad8e2",
         bgDark: "#0e0f10",
-        primaryDark: "#073d64",
+        primaryDark: "#9bd1f8",
         secondaryDark: "#1c2121",
         accentDark: "#ea3443",
       },
