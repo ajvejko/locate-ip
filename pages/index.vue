@@ -4,15 +4,16 @@ const input = ref("");
 
 <template>
   <section
-    class="min-h-screen bg-bgLight px-3 pt-16 text-textLight dark:bg-bgDark dark:text-textDark"
+    class="min-h-screen overflow-y-hidden bg-bgLight px-3 pt-16 text-textLight dark:bg-bgDark dark:text-textDark"
   >
     <div class="flex justify-center">
-      <span
+      <h1
         class="bg-gradient-to-r from-rose-500 via-red-500 to-orange-500 bg-clip-text font-poppins text-3xl font-bold text-transparent"
-        >Locate the IP!</span
       >
+        Locate the IP!
+      </h1>
     </div>
-    <div class="mt-6 flex justify-center">
+    <div class="mt-12 flex justify-center">
       <input
         autofocus
         type="search"
@@ -38,9 +39,9 @@ const input = ref("");
         </svg>
       </button>
     </div>
-    <IpCard>
-      
-    </IpCard>
+    <div class="flex justify-center">
+      <IpCard />
+    </div>
   </section>
 </template>
 

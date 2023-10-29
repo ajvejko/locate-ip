@@ -23,99 +23,85 @@ const { data: ipInfo } = await useFetch<AddressInfo>("https://ipapi.co/json/", {
   ],
 });
 
-ipData.value =
-  {
-    ip: ipInfo.value?.ip,
-    country_name: ipInfo.value?.country_name,
-    region: ipInfo.value?.region,
-    city: ipInfo.value?.city,
-    isp: ipInfo.value?.org,
-    latitude: ipInfo.value?.latitude,
-    longitude: ipInfo.value?.longitude,
-  } ?? [];
+ipData.value = {
+  ip: ipInfo.value?.ip,
+  country_name: ipInfo.value?.country_name,
+  region: ipInfo.value?.region,
+  city: ipInfo.value?.city,
+  isp: ipInfo.value?.org,
+  latitude: ipInfo.value?.latitude,
+  longitude: ipInfo.value?.longitude,
+};
 </script>
 <template>
   <div
-    class="mt-6 overflow-clip rounded-2xl border border-black bg-white/10 text-xl dark:border-white dark:bg-bgDark"
+    class="mt-6 flex max-w-xl flex-col rounded-2xl border border-black bg-white/10 text-xl dark:border-white dark:bg-bgDark"
   >
-    <div
+    <h2
       class="px-3 py-2 text-center font-poppins font-bold text-textLight shadow-lg shadow-black/10 dark:text-textDark dark:shadow-white/5"
     >
       IP Address details
-    </div>
+    </h2>
 
-    <div class="px-3 py-4 shadow-inner">
-      <div class="flex flex-col gap-y-2 text-lg">
-        <!-- Ip info -->
-        <div class="flex items-center gap-1">
-          <IconIp
-            class="stroke-accentLight dark:stroke-accentDark"
-            :filled="true"
-          />
-          <span class="text-textLight dark:text-textDark"
-            >IP Address: {{ ipData.ip }}</span
-          >
-        </div>
-        <!-- Country info -->
-        <div class="flex items-center gap-1">
-          <IconCountry
-            class="stroke-accentLight dark:stroke-accentDark"
-            :filled="true"
-          />
-          <span class="text-textLight dark:text-textDark"
-            >Country: {{ ipData.country_name }}</span
-          >
-        </div>
-        <!-- Region info -->
-        <div class="flex items-center gap-1">
-          <IconRegion
-            class="stroke-accentLight dark:stroke-accentDark"
-            :filled="true"
-          />
-          <span class="text-textLight dark:text-textDark"
-            >Region: {{ ipData.region }}
-          </span>
-        </div>
-        <!-- City info -->
-        <div class="flex items-center gap-1">
-          <IconCity
-            class="stroke-accentLight dark:stroke-accentDark"
-            :filled="true"
-          />
-          <span class="text-textLight dark:text-textDark"
-            >City: {{ ipData.city }}
-          </span>
-        </div>
-        <!-- Isp info -->
-        <div class="flex items-center gap-1">
-          <IconIsp
-            class="stroke-accentLight dark:stroke-accentDark"
-            :filled="true"
-          />
-          <span class="text-textLight dark:text-textDark"
-            >ISP: {{ ipData.isp }}</span
-          >
-        </div>
-        <!-- Latitude info -->
-        <div class="flex items-center gap-1">
-          <IconLatitude
-            class="stroke-accentLight dark:stroke-accentDark"
-            :filled="true"
-          />
-          <span class="text-textLight dark:text-textDark"
-            >Latitude: {{ ipData.latitude }}
-          </span>
-        </div>
-        <!-- Longtitude info -->
-        <div class="flex items-center gap-1">
-          <IconLongtitude
-            class="stroke-accentLight dark:stroke-accentDark"
-            :filled="true"
-          />
-          <span class="text-textLight dark:text-textDark"
-            >Longitude: {{ ipData.longitude }}
-          </span>
-        </div>
+    <div
+      class="flex flex-col gap-y-2 break-all px-3 py-4 text-lg font-bold text-textLight dark:text-textDark"
+    >
+      <!-- Ip info -->
+      <div class="flex flex-wrap items-center gap-1 font-poppins">
+        <IconIp
+          class="stroke-accentLight dark:stroke-accentDark"
+          :filled="true"
+        />
+        IP Address:
+        <span class="font-roboto font-light">{{ ipData.ip }}</span>
+      </div>
+      <!-- Country info -->
+      <div class="flex flex-wrap items-center gap-1 font-poppins">
+        <IconCountry
+          class="stroke-accentLight dark:stroke-accentDark"
+          :filled="true"
+        />Country:
+        <span class="font-roboto font-light">{{ ipData.country_name }}</span>
+      </div>
+      <!-- Region info -->
+      <div class="flex flex-wrap items-center gap-1 font-poppins">
+        <IconRegion
+          class="stroke-accentLight dark:stroke-accentDark"
+          :filled="true"
+        />Region:
+        <span class="font-roboto font-light"> {{ ipData.region }} </span>
+      </div>
+      <!-- City info -->
+      <div class="flex flex-wrap items-center gap-1 font-poppins">
+        <IconCity
+          class="stroke-accentLight dark:stroke-accentDark"
+          :filled="true"
+        />City:
+        <span class="font-roboto font-light">{{ ipData.city }} </span>
+      </div>
+      <!-- Isp info -->
+      <div class="flex flex-wrap items-center gap-1 font-poppins">
+        <IconIsp
+          class="stroke-accentLight dark:stroke-accentDark"
+          :filled="true"
+        />ISP:
+        <span class="font-roboto font-light"> {{ ipData.isp }}</span>
+      </div>
+      <!-- Latitude info -->
+      <div class="flex flex-wrap items-center gap-1 font-poppins">
+        <IconLatitude
+          class="stroke-accentLight dark:stroke-accentDark"
+          :filled="true"
+        />Latitude:
+        <span class="font-roboto font-light"> {{ ipData.latitude }} </span>
+      </div>
+      <!-- Longtitude info -->
+      <div class="flex flex-wrap items-center gap-1 font-poppins">
+        <IconLongtitude
+          class="stroke-accentLight dark:stroke-accentDark"
+          :filled="true"
+        />Longitude:
+        <span class="font-roboto font-light"> {{ ipData.longitude }} </span>
       </div>
     </div>
   </div>
