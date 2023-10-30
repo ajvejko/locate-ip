@@ -19,12 +19,15 @@ const toggleDark = useToggle(isDark);
 
         <a
           href="#home"
-          class="select-none font-poppins text-2xl font-bold md:text-3xl text-textLight dark:text-textDark"
+          class="select-none font-poppins text-2xl font-bold text-textLight dark:text-textDark md:text-3xl"
         >
           LocateIP
         </a>
       </div>
-      <button @click="toggleDark()">
+      <button
+        @click="toggleDark()"
+        class="transition-animation hover:scale-110"
+      >
         <!-- Moon icon -->
         <Transition name="slide-up" mode="out-in">
           <IconMoon
@@ -46,14 +49,25 @@ const toggleDark = useToggle(isDark);
     </nav>
 
     <slot></slot>
+    <div
+      class="sticky flex grow-0 justify-center border-t border-black bg-bgLight pb-1 pt-2 text-center font-roboto text-textLight dark:border-white dark:bg-bgDark dark:text-textDark lg:text-lg"
+    >
+      Want to checkout the source code? ->
+      <a
+        href="https://github.com/ajvejko/locate-ip"
+        class="transition-animation ml-2 hover:scale-110"
+      >
+        <IconGithub
+          class="h-6 w-6 stroke-textLight dark:stroke-textDark md:h-8 md:w-8 lg:h-9 lg:w-9"
+          :filled="true"
+          :fontControlled="false"
+        />
+      </a>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.transition-animation {
-  transition: all 0.3s ease-in;
-}
-
 .slide-up-enter-active,
 .slide-up-leave-active {
   transition: all 0.2s ease-out;

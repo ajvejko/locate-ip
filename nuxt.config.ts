@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
   app: {
     head: {
       link: [
@@ -28,8 +27,8 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  svgo:{
-    componentPrefix: 'Icon',
+  svgo: {
+    componentPrefix: "Icon",
   },
   ssr: false,
 });
