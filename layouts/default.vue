@@ -3,8 +3,6 @@ import { useDark, useToggle } from "@vueuse/core";
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-// class="h-7 w-7 stroke-blue-500 md:h-8 md:w-8 lg:h-9 lg:w-9"
-// class="h-7 w-7 stroke-yellow-400 md:h-8 md:w-8 lg:h-9 lg:w-9"
 </script>
 
 <template>
@@ -14,14 +12,14 @@ const toggleDark = useToggle(isDark);
     >
       <div class="transition-animation flex items-center gap-2 hover:scale-105">
         <IconMap
-          class="h-7 w-7 stroke-accentLight dark:stroke-accentDark"
+          class="h-7 w-7 stroke-accentLight dark:stroke-accentDark md:h-8 md:w-8 lg:h-9 lg:w-9"
           :fontControlled="false"
           :filled="true"
         />
 
         <a
           href="#home"
-          class="select-none font-poppins text-2xl font-bold text-textLight dark:text-textDark"
+          class="select-none font-poppins text-2xl font-bold md:text-3xl text-textLight dark:text-textDark"
         >
           LocateIP
         </a>
