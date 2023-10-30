@@ -10,8 +10,7 @@ interface AddressInfo {
 }
 
 const ipData = ref();
-const loading = ref(true);
-const { data: ipInfo } = await useFetch<AddressInfo>("https://ipapi.co/json/", {
+/*const { data: ipInfo } = await useFetch<AddressInfo>("https://ipapi.co/json/", {
   pick: [
     "ip",
     "country_name",
@@ -31,11 +30,11 @@ ipData.value = {
   isp: ipInfo.value?.org,
   latitude: ipInfo.value?.latitude,
   longitude: ipInfo.value?.longitude,
-};
+};*/
 </script>
 <template>
   <div
-    class="mt-6 flex max-w-xl flex-col rounded-2xl border border-black bg-white/10 text-xl dark:border-white dark:bg-bgDark"
+    class="mt-6 flex max-w-xl flex-col rounded-2xl border border-black bg-white/10 text-xl lg:text-2xl dark:border-white dark:bg-bgDark"
   >
     <h2
       class="px-3 py-2 text-center font-poppins font-bold text-textLight shadow-lg shadow-black/10 dark:text-textDark dark:shadow-white/5"
@@ -44,7 +43,7 @@ ipData.value = {
     </h2>
 
     <div
-      class="flex flex-col gap-y-2 break-all px-3 py-4 text-lg font-bold text-textLight dark:text-textDark"
+      class="flex flex-col gap-y-2 break-all px-3 py-4 text-lg lg:text-xl font-bold text-textLight dark:text-textDark"
     >
       <!-- Ip info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -53,7 +52,7 @@ ipData.value = {
           :filled="true"
         />
         IP Address:
-        <span class="font-roboto font-light">{{ ipData.ip }}</span>
+        <span class="font-roboto font-light">Redacted :)</span>
       </div>
       <!-- Country info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -61,7 +60,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />Country:
-        <span class="font-roboto font-light">{{ ipData.country_name }}</span>
+        <span class="font-roboto font-light">Redacted :) </span>
       </div>
       <!-- Region info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -69,7 +68,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />Region:
-        <span class="font-roboto font-light"> {{ ipData.region }} </span>
+        <span class="font-roboto font-light"> Redacted :) </span>
       </div>
       <!-- City info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -77,7 +76,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />City:
-        <span class="font-roboto font-light">{{ ipData.city }} </span>
+        <span class="font-roboto font-light">Redacted :) </span>
       </div>
       <!-- Isp info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -85,7 +84,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />ISP:
-        <span class="font-roboto font-light"> {{ ipData.isp }}</span>
+        <span class="font-roboto font-light"> Redacted :) </span>
       </div>
       <!-- Latitude info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -93,7 +92,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />Latitude:
-        <span class="font-roboto font-light"> {{ ipData.latitude }} </span>
+        <span class="font-roboto font-light"> Redacted :) </span>
       </div>
       <!-- Longtitude info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -101,7 +100,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />Longitude:
-        <span class="font-roboto font-light"> {{ ipData.longitude }} </span>
+        <span class="font-roboto font-light"> Redacted :) </span>
       </div>
     </div>
   </div>
