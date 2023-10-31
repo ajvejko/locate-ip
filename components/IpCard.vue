@@ -10,7 +10,7 @@ interface AddressInfo {
 }
 
 const ipData = ref();
-/*const { data: ipInfo } = await useFetch<AddressInfo>("https://ipapi.co/json/", {
+const { data: ipInfo } = await useFetch<AddressInfo>("https://ipapi.co/json/", {
   pick: [
     "ip",
     "country_name",
@@ -30,7 +30,7 @@ ipData.value = {
   isp: ipInfo.value?.org,
   latitude: ipInfo.value?.latitude,
   longitude: ipInfo.value?.longitude,
-};*/
+};
 </script>
 <template>
   <div
@@ -53,7 +53,7 @@ ipData.value = {
         />
         IP Address:
         <span class="font-roboto font-light">
-          1a23:4567:c890:1234:5d6e:a78e:90eb:acd1
+          {{ ipData.ip }}
         </span>
       </div>
       <!-- Country info -->
@@ -62,7 +62,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />Country:
-        <span class="font-roboto font-light">Czech republic </span>
+        <span class="font-roboto font-light">{{ ipData.country_name }} </span>
       </div>
       <!-- Region info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -70,7 +70,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />Region:
-        <span class="font-roboto font-light"> Kralovehradecky kraj </span>
+        <span class="font-roboto font-light"> {{ ipData.region }} </span>
       </div>
       <!-- City info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -78,7 +78,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />City:
-        <span class="font-roboto font-light">Hradec Králové </span>
+        <span class="font-roboto font-light">{{ ipData.city }} </span>
       </div>
       <!-- Isp info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -87,7 +87,7 @@ ipData.value = {
           :filled="true"
         />ISP:
         <span class="font-roboto font-light">
-          Vodafone Czech Republic a.s.
+          {{ ipData.isp }}
         </span>
       </div>
       <!-- Latitude info -->
@@ -96,7 +96,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />Latitude:
-        <span class="font-roboto font-light"> 12.3456 </span>
+        <span class="font-roboto font-light"> {{ ipData.latitude }} </span>
       </div>
       <!-- Longtitude info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -104,7 +104,7 @@ ipData.value = {
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />Longitude:
-        <span class="font-roboto font-light"> 65.4321 </span>
+        <span class="font-roboto font-light"> {{ ipData.longitude }} </span>
       </div>
     </div>
   </div>
