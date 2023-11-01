@@ -19,7 +19,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: ["@vueuse/nuxt", "nuxt-svgo"],
+  modules: ["@vueuse/nuxt", "nuxt-svgo", "@pinia/nuxt"],
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
