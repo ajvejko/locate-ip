@@ -12,4 +12,5 @@ This project is another personal learning project where I try to learn basics of
 
 ## Modals used
 - VueUse
+- Pinia
 - Svgo
