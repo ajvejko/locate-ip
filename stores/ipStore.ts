@@ -11,6 +11,7 @@ interface AddressInfo {
 }
 
 export const useIpStore = defineStore("ipStore", () => {
+  const pending = ref(false);
   const ip = ref();
   const countryName = ref();
   const region = ref();
@@ -20,7 +21,7 @@ export const useIpStore = defineStore("ipStore", () => {
   const longitude = ref();
   const fetchUserIpData = async () => {
     try {
-      const { data: ipInfo } = await useFetch<AddressInfo>(
+      const { data: ipInfo, pending } = await useFetch<AddressInfo>(
         "https://ipapi.co/json/",
         {
           pick: [
@@ -46,6 +47,35 @@ export const useIpStore = defineStore("ipStore", () => {
       console.log(error);
     }
   };
+  const fetchSpecificIpData = async (selectedIP: string) => {
+    try {
+      const { data: ipInfo, pending } = await useFetch<AddressInfo>(
+        `https://ipapi.co/${selectedIP}/json/`,
+        {
+          pick: [
+            "ip",
+            "country_name",
+            "region",
+            "city",
+            "org",
+            "latitude",
+            "longitude",
+          ],
+        },
+      );
+
+      ip.value = ipInfo.value?.ip;
+      countryName.value = ipInfo.value?.country_name;
+      region.value = ipInfo.value?.region;
+      city.value = ipInfo.value?.city;
+      isp.value = ipInfo.value?.org;
+      latitude.value = ipInfo.value?.latitude;
+      longitude.value = ipInfo.value?.longitude;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     ip,
     countryName,
@@ -55,6 +85,7 @@ export const useIpStore = defineStore("ipStore", () => {
     latitude,
     longitude,
     fetchUserIpData,
+    fetchSpecificIpData,
   };
 });
 
