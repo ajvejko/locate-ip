@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { useIpStore } from "@/stores/ipStore";
+
+const store = useIpStore();
+onMounted(() => {
+  store.fetchUserIpData();
+});
+</script>
 <template>
   <div>
     <NuxtLayout>

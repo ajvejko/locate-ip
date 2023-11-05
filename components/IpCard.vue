@@ -2,7 +2,7 @@
 import { useIpStore } from "@/stores/ipStore";
 
 const store = useIpStore();
-store.fetchUserIpData();
+
 </script>
 <template>
   <div

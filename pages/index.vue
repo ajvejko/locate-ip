@@ -1,5 +1,28 @@
 <script setup lang="ts">
+import { useIpStore } from "@/stores/ipStore";
+
 const input = ref("");
+const store = useIpStore();
+const isValidIp = ref(false);
+const ipv4Regex =
+  /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+const ipv6Regex =
+  /^((?:[A-Fa-f0-9]{1,4}:){7}[A-Fa-f0-9]{1,4}|(?:[A-Fa-f0-9]{1,4}:){1,7}:|(?:[A-Fa-f0-9]{1,4}:){1,6}:[A-Fa-f0-9]{1,4}|(?:[A-Fa-f0-9]{1,4}:){1,5}(?::[A-Fa-f0-9]{1,4}){1,2}|(?:[A-Fa-f0-9]{1,4}:){1,4}(?::[A-Fa-f0-9]{1,4}){1,3}|(?:[A-Fa-f0-9]{1,4}:){1,3}(?::[A-Fa-f0-9]{1,4}){1,4}|(?:[A-Fa-f0-9]{1,4}:){1,2}(?::[A-Fa-f0-9]{1,4}){1,5}|[A-Fa-f0-9]{1,4}:(?:(?::[A-Fa-f0-9]{1,4}){1,6})|:(?:(?::[A-Fa-f0-9]{1,4}){1,7}|:)|fe80:(?::[A-Fa-f0-9]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(?:ffff(?::0{1,4}){0,1}:){0,1}(?:(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[A-Fa-f0-9]{1,4}:){1,4}:(?:(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$/;
+watch(
+  input,
+  () => {
+    if (
+      ipv4Regex.test(input.value.trim()) ||
+      ipv6Regex.test(input.value.trim()) ||
+      input.value.trim() == ""
+    ) {
+      isValidIp.value = true;
+    } else {
+      isValidIp.value = false;
+    }
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
@@ -13,16 +36,24 @@ const input = ref("");
         Locate the IP!
       </h1>
     </div>
-    <div class="mt-12 flex justify-center">
+    <form
+      class="mt-12 flex justify-center"
+      @submit.prevent="store.fetchSpecificIpData(input)"
+      :disabled="!isValidIp"
+    >
       <input
         autofocus
         type="search"
         v-model="input"
         placeholder="Enter an IP address"
         class="search-input w-2/3 max-w-xl rounded-l-full border border-r-0 border-black/50 bg-bgLight px-5 py-2 text-textLight placeholder:font-roboto placeholder:text-textLight/80 focus:border-black focus:outline-none dark:border-white/70 dark:bg-bgDark dark:text-textDark dark:placeholder:text-textDark/80 dark:focus:border-white sm:text-xl lg:text-2xl"
+        :class="[isValidIp ? '' : '!border-red-500']"
       />
       <button
+        @click="store.fetchSpecificIpData(input)"
         class="search-button items-center rounded-r-full border-y border-r border-black/50 px-3 dark:border-white/70"
+        :class="[isValidIp ? '' : '!border-red-500']"
+        :disabled="!isValidIp"
       >
         <!-- Search icon -->
         <svg
@@ -38,7 +69,7 @@ const input = ref("");
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       </button>
-    </div>
+    </form>
     <div class="flex justify-center lg:mt-3">
       <IpCard />
     </div>
