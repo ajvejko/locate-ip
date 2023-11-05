@@ -18,7 +18,7 @@ export const useIpStore = defineStore("ipStore", () => {
   const isp = ref();
   const latitude = ref();
   const longitude = ref();
-  const fetchUserIpData = async (data: AddressInfo) => {
+  const fetchUserIpData = async () => {
     try {
       const { data: ipInfo } = await useFetch<AddressInfo>(
         "https://ipapi.co/json/",
