@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
+      title: "LocateIP!",
       link: [
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         {
@@ -15,6 +16,11 @@ export default defineNuxtConfig({
         {
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap",
+        },
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "/favicon.svg?v2",
         },
       ],
     },
