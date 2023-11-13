@@ -2,25 +2,18 @@
 import { useIpStore } from "@/stores/ipStore";
 import { ipv4Regex, ipv6Regex } from "@/utils/regex";
 
-const input = ref("");
 const store = useIpStore();
-const isValidIp = ref(false);
+const input = ref("");
 
-watch(
-  input,
-  () => {
-    if (
-      ipv4Regex.test(input.value.trim()) ||
-      ipv6Regex.test(input.value.trim()) ||
-      input.value.trim() == ""
-    ) {
-      isValidIp.value = true;
-    } else {
-      isValidIp.value = false;
-    }
-  },
-  { immediate: true },
-);
+const isValidIp = computed(() => {
+  const trimmedInput = input.value.trim();
+  console.log("here");
+  return (
+    ipv4Regex.test(trimmedInput) ||
+    ipv6Regex.test(trimmedInput) ||
+    trimmedInput === ""
+  );
+});
 </script>
 
 <template>
@@ -37,12 +30,12 @@ watch(
 
     <form
       class="mx-auto mt-12 flex w-2/3 max-w-xl flex-col items-center justify-center"
-      @submit.prevent="store.fetchIpData(input.trim())"
+      @submit.prevent="store.fetchIpData(input)"
       :disabled="!isValidIp"
     >
       <div class="relative flex w-full">
         <div
-          v-show="!isValidIp"
+          v-if="!isValidIp"
           class="absolute left-0 top-0 -translate-y-7 translate-x-6 text-red-500 lg:text-lg"
         >
           Invalid IP address
@@ -50,13 +43,13 @@ watch(
         <input
           autofocus
           type="search"
-          v-model="input"
+          v-model.trim="input"
           placeholder="Enter an IP address"
           class="search-input w-full rounded-l-full border border-r-0 border-black/50 bg-bgLight px-5 py-2 text-textLight placeholder:font-roboto placeholder:text-textLight/80 focus:border-black focus:outline-none dark:border-white/70 dark:bg-bgDark dark:text-textDark dark:placeholder:text-textDark/80 dark:focus:border-white sm:text-xl lg:text-2xl"
           :class="[isValidIp ? '' : '!border-red-500']"
         />
         <button
-          @click="store.fetchIpData(input.trim())"
+          @click.prevent="store.fetchIpData(input)"
           class="search-button items-center rounded-r-full border-y border-r border-black/50 px-3 dark:border-white/70"
           :class="[isValidIp ? '' : '!border-red-500']"
           :disabled="!isValidIp"
