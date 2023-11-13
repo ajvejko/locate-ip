@@ -2,7 +2,7 @@
 import { useDark, useToggle } from "@vueuse/core";
 
 const isDark = useDark();
-const toggleDark = useToggle(isDark);
+const toggleDarkMode = useToggle(isDark);
 </script>
 
 <template>
@@ -25,7 +25,7 @@ const toggleDark = useToggle(isDark);
         </a>
       </div>
       <button
-        @click="toggleDark()"
+        @click="toggleDarkMode()"
         class="transition-animation hover:scale-110"
       >
         <!-- Moon icon -->
@@ -35,6 +35,7 @@ const toggleDark = useToggle(isDark);
             class="h-7 w-7 stroke-blue-500 md:h-8 md:w-8 lg:h-9 lg:w-9"
             :fontControlled="false"
             :filled="true"
+            alt="Moon icon for dark mode"
           />
 
           <!-- Sun icon -->
@@ -43,6 +44,7 @@ const toggleDark = useToggle(isDark);
             class="h-7 w-7 stroke-yellow-400 md:h-8 md:w-8 lg:h-9 lg:w-9"
             :fontControlled="false"
             :filled="true"
+            alt="Sun icon for light mode"
           />
         </Transition>
       </button>
@@ -61,6 +63,7 @@ const toggleDark = useToggle(isDark);
           class="h-6 w-6 stroke-textLight dark:stroke-textDark md:h-8 md:w-8 lg:h-9 lg:w-9"
           :filled="true"
           :fontControlled="false"
+          alt="Github icon"
         />
       </a>
     </div>
