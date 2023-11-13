@@ -22,7 +22,7 @@ export const useIpStore = defineStore("ipStore", () => {
   const fetchUserIpData = async () => {
     pending.value = true;
     try {
-      const { data: ipInfo, pending } = await useFetch<AddressInfo>(
+      const { data: ipInfo } = await useFetch<AddressInfo>(
         "https://ipapi.co/json/",
         {
           pick: [
@@ -46,7 +46,7 @@ export const useIpStore = defineStore("ipStore", () => {
         longitude.value = ipInfo.value?.longitude;
       }
     } catch (error) {
-      console.log("Failed to fetch user IP data", error);
+      console.error("Failed to fetch user IP data", error);
     } finally {
       pending.value = false;
     }
@@ -78,7 +78,7 @@ export const useIpStore = defineStore("ipStore", () => {
         longitude.value = ipInfo.value?.longitude;
       }
     } catch (error) {
-      console.log("Failed to fetch selected IP data", error);
+      console.error("Failed to fetch selected IP data", error);
     } finally {
       pending.value = false;
     }
