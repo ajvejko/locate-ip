@@ -35,7 +35,9 @@ const store = useIpStore();
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />Country:
-        <span class="font-roboto font-light">{{ store.countryName }} </span>
+        <span class="font-roboto font-light"
+          >{{ store.countryName || "No information found" }}
+        </span>
       </div>
       <!-- Region info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -44,7 +46,7 @@ const store = useIpStore();
           :filled="true"
         />Region:
         <span class="font-roboto font-light">
-          {{ store.region }}
+          {{ store.region || "No information found" }}
         </span>
       </div>
       <!-- City info -->
@@ -53,7 +55,7 @@ const store = useIpStore();
           class="stroke-accentLight dark:stroke-accentDark"
           :filled="true"
         />City:
-        <span class="font-roboto font-light">{{ store.city }} </span>
+        <span class="font-roboto font-light">{{ store.city || "No information found"  }} </span>
       </div>
       <!-- Isp info -->
       <div class="flex flex-wrap items-center gap-1 font-poppins">
@@ -62,7 +64,7 @@ const store = useIpStore();
           :filled="true"
         />ISP:
         <span class="font-roboto font-light">
-          {{ store.isp }}
+          {{ store.isp || "No information found" }}
         </span>
       </div>
       <!-- Latitude info -->
@@ -72,7 +74,7 @@ const store = useIpStore();
           :filled="true"
         />Latitude:
         <span class="font-roboto font-light">
-          {{ store.latitude }}
+          {{ store.latitude || "No information found" }}
         </span>
       </div>
       <!-- Longtitude info -->
@@ -82,7 +84,7 @@ const store = useIpStore();
           :filled="true"
         />Longitude:
         <span class="font-roboto font-light">
-          {{ store.longitude }}
+          {{ store.longitude || "No information found"  }}
         </span>
       </div>
     </div>
