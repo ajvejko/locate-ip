@@ -11,15 +11,16 @@ interface AddressInfo {
 }
 
 export const useIpStore = defineStore("ipStore", () => {
-  const pending = ref(false);
-  const ip = ref();
-  const countryName = ref();
-  const region = ref();
-  const city = ref();
-  const isp = ref();
-  const latitude = ref();
-  const longitude = ref();
+  const pending = ref<boolean>(false);
+  const ip = ref<string | null>(null);
+  const countryName = ref<string | null>(null);
+  const region = ref<string | null>(null);
+  const city = ref<string | null>(null);
+  const isp = ref<string | null>(null);
+  const latitude = ref<number | null>(null);
+  const longitude = ref<number | null>(null);
   const fetchUserIpData = async () => {
+    pending.value = true;
     try {
       const { data: ipInfo, pending } = await useFetch<AddressInfo>(
         "https://ipapi.co/json/",
@@ -35,19 +36,23 @@ export const useIpStore = defineStore("ipStore", () => {
           ],
         },
       );
-
-      ip.value = ipInfo.value?.ip;
-      countryName.value = ipInfo.value?.country_name;
-      region.value = ipInfo.value?.region;
-      city.value = ipInfo.value?.city;
-      isp.value = ipInfo.value?.org;
-      latitude.value = ipInfo.value?.latitude;
-      longitude.value = ipInfo.value?.longitude;
+      if (ipInfo.value) {
+        ip.value = ipInfo.value?.ip;
+        countryName.value = ipInfo.value?.country_name;
+        region.value = ipInfo.value?.region;
+        city.value = ipInfo.value?.city;
+        isp.value = ipInfo.value?.org;
+        latitude.value = ipInfo.value?.latitude;
+        longitude.value = ipInfo.value?.longitude;
+      }
     } catch (error) {
-      console.log(error);
+      console.log("Failed to fetch user IP data", error);
+    } finally {
+      pending.value = false;
     }
   };
   const fetchSpecificIpData = async (selectedIP: string) => {
+    pending.value = true;
     try {
       const { data: ipInfo, pending } = await useFetch<AddressInfo>(
         `https://ipapi.co/${selectedIP}/json/`,
@@ -63,16 +68,19 @@ export const useIpStore = defineStore("ipStore", () => {
           ],
         },
       );
-
-      ip.value = ipInfo.value?.ip;
-      countryName.value = ipInfo.value?.country_name;
-      region.value = ipInfo.value?.region;
-      city.value = ipInfo.value?.city;
-      isp.value = ipInfo.value?.org;
-      latitude.value = ipInfo.value?.latitude;
-      longitude.value = ipInfo.value?.longitude;
+      if (ipInfo.value) {
+        ip.value = ipInfo.value?.ip;
+        countryName.value = ipInfo.value?.country_name;
+        region.value = ipInfo.value?.region;
+        city.value = ipInfo.value?.city;
+        isp.value = ipInfo.value?.org;
+        latitude.value = ipInfo.value?.latitude;
+        longitude.value = ipInfo.value?.longitude;
+      }
     } catch (error) {
-      console.log(error);
+      console.log("Failed to fetch selected IP data", error);
+    } finally {
+      pending.value = false;
     }
   };
 
