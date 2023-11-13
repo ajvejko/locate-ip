@@ -3,7 +3,7 @@ import { useIpStore } from "@/stores/ipStore";
 
 const store = useIpStore();
 onMounted(() => {
-  store.fetchUserIpData();
+  store.fetchIpData();
 });
 </script>
 <template>

@@ -38,7 +38,7 @@ watch(
     </div>
     <form
       class="mt-12 flex justify-center"
-      @submit.prevent="store.fetchSpecificIpData(input.trim())"
+      @submit.prevent="store.fetchIpData(input.trim())"
       :disabled="!isValidIp"
     >
       <input
@@ -50,7 +50,7 @@ watch(
         :class="[isValidIp ? '' : '!border-red-500']"
       />
       <button
-        @click="store.fetchSpecificIpData(input.trim())"
+        @click="store.fetchIpData(input.trim())"
         class="search-button items-center rounded-r-full border-y border-r border-black/50 px-3 dark:border-white/70"
         :class="[isValidIp ? '' : '!border-red-500']"
         :disabled="!isValidIp"

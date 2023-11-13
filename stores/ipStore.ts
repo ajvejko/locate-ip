@@ -19,66 +19,45 @@ export const useIpStore = defineStore("ipStore", () => {
   const isp = ref<string | null>(null);
   const latitude = ref<number | null>(null);
   const longitude = ref<number | null>(null);
-  const fetchUserIpData = async () => {
+
+  const fetchIpData = async (selectedIP?: string) => {
     pending.value = true;
     try {
-      const { data: ipInfo } = await useFetch<AddressInfo>(
-        "https://ipapi.co/json/",
-        {
-          pick: [
-            "ip",
-            "country_name",
-            "region",
-            "city",
-            "org",
-            "latitude",
-            "longitude",
-          ],
-        },
-      );
+      const url = selectedIP
+        ? `https://ipapi.co/${selectedIP}/json/`
+        : "https://ipapi.co/json/";
+      const { data: ipInfo } = await useFetch<AddressInfo>(url, {
+        pick: [
+          "ip",
+          "country_name",
+          "region",
+          "city",
+          "org",
+          "latitude",
+          "longitude",
+        ],
+      });
       if (ipInfo.value) {
-        ip.value = ipInfo.value?.ip;
-        countryName.value = ipInfo.value?.country_name;
-        region.value = ipInfo.value?.region;
-        city.value = ipInfo.value?.city;
+        const {
+          ip: ipVal,
+          country_name: countryNameVal,
+          region: regionVal,
+          city: cityVal,
+          org: orgVal,
+          latitude: latitudeVal,
+          longitude: longitudeVal,
+        } = ipInfo.value;
+
+        ip.value = ipVal;
+        countryName.value = countryNameVal;
+        region.value = regionVal;
+        city.value = cityVal;
         isp.value = ipInfo.value?.org;
-        latitude.value = ipInfo.value?.latitude;
-        longitude.value = ipInfo.value?.longitude;
+        latitude.value = latitudeVal;
+        longitude.value = longitudeVal;
       }
     } catch (error) {
-      console.error("Failed to fetch user IP data", error);
-    } finally {
-      pending.value = false;
-    }
-  };
-  const fetchSpecificIpData = async (selectedIP: string) => {
-    pending.value = true;
-    try {
-      const { data: ipInfo, pending } = await useFetch<AddressInfo>(
-        `https://ipapi.co/${selectedIP}/json/`,
-        {
-          pick: [
-            "ip",
-            "country_name",
-            "region",
-            "city",
-            "org",
-            "latitude",
-            "longitude",
-          ],
-        },
-      );
-      if (ipInfo.value) {
-        ip.value = ipInfo.value?.ip;
-        countryName.value = ipInfo.value?.country_name;
-        region.value = ipInfo.value?.region;
-        city.value = ipInfo.value?.city;
-        isp.value = ipInfo.value?.org;
-        latitude.value = ipInfo.value?.latitude;
-        longitude.value = ipInfo.value?.longitude;
-      }
-    } catch (error) {
-      console.error("Failed to fetch selected IP data", error);
+      console.error("Failed to fetch IP data", error);
     } finally {
       pending.value = false;
     }
@@ -92,8 +71,7 @@ export const useIpStore = defineStore("ipStore", () => {
     isp,
     latitude,
     longitude,
-    fetchUserIpData,
-    fetchSpecificIpData,
+    fetchIpData,
   };
 });
 
