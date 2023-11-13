@@ -64,6 +64,7 @@ export const useIpStore = defineStore("ipStore", () => {
   };
 
   return {
+    pending,
     ip,
     countryName,
     region,

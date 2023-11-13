@@ -2,7 +2,6 @@
 import { useIpStore } from "@/stores/ipStore";
 
 const store = useIpStore();
-
 </script>
 <template>
   <div
@@ -11,7 +10,9 @@ const store = useIpStore();
     <h2
       class="border-b border-black px-3 py-2 text-center font-poppins font-bold text-textLight shadow-lg shadow-black/10 dark:border-white dark:text-textDark dark:shadow-white/10"
     >
-      IP Address details:
+      {{
+        store.pending ? "Searching for IP details..." : "IP Address details:"
+      }}
     </h2>
 
     <div
